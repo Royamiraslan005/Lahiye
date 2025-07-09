@@ -10,6 +10,7 @@ using System.Threading.Tasks;
 namespace NailSalon.BL.Services.Concretes
 {
     using global::NailSalon.Core.Models;
+    using global::NailSalon.DAL.Repositories.Concretes;
     using System.Collections.Generic;
     using System.Linq;
     using System.Threading.Tasks;
@@ -30,16 +31,27 @@ namespace NailSalon.BL.Services.Concretes
             var product = await _shopRepo.GetByIdAsync(productId);
             if (product == null) return;
 
-            var newItem = new BasketItem
-            {
-                AppUserId = userId,
-                ProductId = productId,
-                Quantity = quantity,
-                Name = product.Name,       
-                ImageUrl = product.ImageUrl 
-            };
+            var existingItems = await _basketRepo.GetItemsAsync(userId);
+            var existingItem = existingItems.FirstOrDefault(x => x.ProductId == productId);
 
-            await _basketRepo.AddItemAsync(newItem);
+            if (existingItem != null)
+            {
+                existingItem.Quantity += quantity;
+                await _basketRepo.UpdateItemAsync(existingItem);
+            }
+            else
+            {
+                var newItem = new BasketItem
+                {
+                    AppUserId = userId,
+                    ProductId = productId,
+                    Quantity = quantity,
+                    Name = product.Name,
+                    ImageUrl = product.ImageUrl
+                };
+
+                await _basketRepo.AddItemAsync(newItem);
+            }
         }
 
 

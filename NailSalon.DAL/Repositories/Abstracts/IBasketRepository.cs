@@ -14,6 +14,7 @@ namespace NailSalon.DAL.Repositories.Abstracts
         Task AddItemAsync(BasketItem item);
         Task RemoveItemAsync(int itemId);
         Task ClearBasketAsync(string userId);
+        Task UpdateItemAsync(BasketItem item);
     }
 
 

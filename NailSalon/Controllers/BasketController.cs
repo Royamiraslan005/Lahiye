@@ -38,16 +38,19 @@ namespace NailSalon.Controllers
             return View(basketItems);
         }
         [HttpPost]
+     
         public async Task<IActionResult> AddToBasket(int productId, int quantity = 1)
         {
             if (!User.Identity.IsAuthenticated)
-                return Unauthorized();
+                return RedirectToAction("Login", "Account");
 
-            var user =await _userManager.FindByEmailAsync(User.Identity.Name);
+            var user = await _userManager.FindByEmailAsync(User.Identity.Name);
+            if (user == null)
+                return Unauthorized();
 
             await _basketService.AddToBasketAsync(user.Id, productId, quantity);
 
-            return RedirectToAction(nameof(Index));
+            return RedirectToAction("Index");
         }
 
 

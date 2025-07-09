@@ -54,4 +54,11 @@ public class BasketRepository : IBasketRepository
         _context.BasketItems.RemoveRange(items);
         await _context.SaveChangesAsync();
     }
+
+    public async Task UpdateItemAsync(BasketItem item)
+    {
+        _context.BasketItems.Update(item);
+        await _context.SaveChangesAsync();
+    }
+
 }

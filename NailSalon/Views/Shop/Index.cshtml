@@ -16,14 +16,12 @@
             transform: translateY(0);
         }
 
-        /* Hover effekti — kart yuxarı qalxsın */
         .product-card:hover {
             transform: translateY(-10px);
             box-shadow: 0 12px 24px rgba(0, 0, 0, 0.15);
         }
 </style>
 
-<!-- ❤️ Bəyəndiklərim səhifəsinə keçid -->
 <div class="text-end me-3 mt-3">
     <a asp-controller="Like" asp-action="Liked" class="btn btn-outline-danger">
         ❤️ Bəyəndiklərim
@@ -37,7 +35,7 @@
         @foreach (var item in Model)
         {
             <div class="col">
-                <div class="card h-100 shadow-sm product-card">
+                <div class="card h-100 shadow-sm product-card position-relative">
                     <form asp-controller="Like" asp-action="Toggle" method="post" class="position-absolute top-0 end-0 m-2">
                         <input type="hidden" name="productId" value="@item.Id" />
                         <button type="submit" class="btn btn-sm @(item.IsLikedByUser ? "btn-danger" : "btn-outline-danger")">
@@ -56,23 +54,35 @@
                         <span class="badge bg-light border border-primary" style="color:#680427;">@item.Category</span>
                     </div>
 
-                    <div class="card-footer text-center d-flex justify-content-center gap-2 flex-wrap">
+                    <div class="card-footer text-center d-flex justify-content-center gap-2 flex-wrap align-items-center">
+                        <input type="number" id="qty-@item.Id" value="1" min="1" class="form-control form-control-sm" style="width: 60px;" />
+
                         <form asp-controller="Basket" asp-action="AddToBasket" method="post" class="m-0">
                             <input type="hidden" name="productId" value="@item.Id" />
-                            <button type="submit" class="btn btn-outline-success btn-sm">
-                                🛒 
-                            </button>
+                            <input type="hidden" name="quantity" id="basket-qty-@item.Id" value="1" />
+                            <button type="submit" class="btn btn-outline-success btn-sm" title="Səbətə əlavə et">🛒</button>
                         </form>
 
-                        <form asp-controller="Sale" asp-action="Create" method="post" class="d-inline m-0">
+                        <form asp-controller="Sale" asp-action="Create" method="post" class="m-0">
                             <input type="hidden" name="productId" value="@item.Id" />
-                            <input type="number" name="quantity" value="1" min="1" class="form-control form-control-sm" style="width: 60px; display: inline-block;" />
-                            <button type="submit" class="btn btn-outline-primary btn-sm">
-                                💳 
-                            </button>
+                            <input type="hidden" name="quantity" id="sale-qty-@item.Id" value="1" />
+                            <button type="submit" class="btn btn-outline-primary btn-sm" title="Birbaşa ödəniş et">💳</button>
                         </form>
-
                     </div>
+
+                    <script>
+                        (() => {
+                            const qtyInput = document.getElementById("qty-@item.Id");
+                            const basketQty = document.getElementById("basket-qty-@item.Id");
+                            const saleQty = document.getElementById("sale-qty-@item.Id");
+
+                            qtyInput.addEventListener("input", function () {
+                                if (this.value < 1) this.value = 1;
+                                basketQty.value = this.value;
+                                saleQty.value = this.value;
+                            });
+                        })();
+                    </script>
                 </div>
             </div>
         }

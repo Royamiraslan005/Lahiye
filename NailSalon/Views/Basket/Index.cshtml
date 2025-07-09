@@ -11,186 +11,225 @@
     <title>@ViewData["Title"]</title>
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet" />
 
     <style>
         body {
-            background-color: #fff0f7;
-            font-family: 'Segoe UI', sans-serif;
+            background: linear-gradient(135deg, #fff0f7, #ffeef3);
+            font-family: 'Poppins', sans-serif;
         }
 
         .basket-container {
             max-width: 1000px;
-            margin: 50px auto;
-            background-color: #ffffff;
-            border-radius: 20px;
-            padding: 30px 40px;
-            box-shadow: 0 10px 30px rgba(255, 105, 180, 0.2);
+            margin: 60px auto;
+            background-color: #fff;
+            border-radius: 24px;
+            padding: 40px;
+            box-shadow: 0 10px 40px rgba(214, 51, 132, 0.15);
         }
 
         h2 {
             color: #d63384;
             font-weight: 700;
+            text-align: center;
             margin-bottom: 30px;
         }
 
         .table th {
-            background-color: #ffe4ec;
+            background-color: #fff1f8;
             color: #d63384;
-        }
-
-        .table td {
-            vertical-align: middle;
+            font-weight: 600;
         }
 
         .product-img {
             height: 60px;
             width: 60px;
             object-fit: cover;
-            border-radius: 8px;
+            border-radius: 10px;
             border: 1px solid #ffd6e8;
         }
 
-        .btn-danger,
-        .btn-warning,
-        .btn-success,
-        .btn-secondary {
-            border-radius: 10px;
+        .btn-custom {
+            border-radius: 12px;
             font-weight: 600;
-            padding: 10px 22px;
-            transition: background-color 0.3s ease;
+            padding: 10px 20px;
+            border: none;
+            background-color: #f8d4e4;
+            color: #d63384;
+            transition: all 0.3s ease;
         }
 
-        .btn-danger:hover {
-            background-color: #b02a37;
-            border-color: #b02a37;
+            .btn-custom:hover {
+                background-color: #f2bcd6;
+                color: #a61b4d;
+            }
+
+        .btn-sm.btn-custom {
+            padding: 6px 12px;
+            font-size: 0.875rem;
         }
 
-        .btn-warning:hover {
-            background-color: #cc7a00;
-            border-color: #cc7a00;
-        }
-
-        .btn-success:hover {
-            background-color: #196c2e;
-            border-color: #196c2e;
-        }
-
-        .empty-text {
-            color: #999;
-            font-style: italic;
+        .total-cell {
+            color: #d63384;
+            font-weight: 700;
             font-size: 1.1rem;
-            margin-top: 40px;
         }
 
-        .action-buttons {
-            margin-top: 30px;
+        .quantity-control {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 5px;
         }
 
-        /* Responsive adjustments */
-        @@media (max-width: 768px) {
-            .basket-container {
-                margin: 20px 15px;
-                padding: 20px 20px;
-            }
-
-            .table-responsive {
-                overflow-x: auto;
-            }
-
-            /* Düymələr alt-alta sıralansın */
-            .action-buttons {
-                flex-direction: column !important;
-                gap: 15px;
-            }
-
-            .action-buttons .btn {
-                width: 100% !important;
-                padding: 12px 0;
-                font-size: 1.1rem;
-            }
+        .quantity-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 8px;
         }
 
-        @@media (max-width: 480px) {
-            .product-img {
-                height: 50px;
-                width: 50px;
+            .quantity-buttons button {
+                width: 30px;
+                height: 30px;
+                font-size: 18px;
+                border-radius: 50%;
+                border: none;
+                background-color: #f9d9e8;
+                color: #a21858;
+                transition: background-color 0.3s ease;
             }
 
-            .table th,
-            .table td {
-                padding: 10px 6px;
-                font-size: 0.9rem;
-            }
+                .quantity-buttons button:hover {
+                    background-color: #f7b9d4;
+                }
+
+        .quantity-control input {
+            width: 50px;
+            text-align: center;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            padding: 4px;
         }
     </style>
 </head>
 <body>
     <div class="container basket-container">
-        <h2 class="text-center">🛒 Səbətim</h2>
+        <h2>🛒 Səbətim</h2>
 
         @if (Model == null || !Model.Any())
         {
-                <p class="empty-text text-center">Səbətiniz boşdur.</p>
-                <div class="text-center mt-4">
-                    <a asp-controller="Shop" asp-action="Index" class="btn btn-primary px-4 py-2">🛍️ Alış-verişə davam et</a>
-                </div>
+            <p class="text-center text-muted">Səbətiniz boşdur.</p>
+            <div class="text-center mt-4">
+                <a asp-controller="Shop" asp-action="Index" class="btn btn-custom">🛍️ Alış-verişə davam et</a>
+            </div>
         }
         else
         {
-                <div class="table-responsive">
-                    <table class="table align-middle">
-                        <thead>
-                            <tr>
-                                <th>Şəkil</th>
-                                <th>Məhsul</th>
-                                <th>Qiymət</th>
-                                <th>Say</th>
-                                <th>Cəm</th>
-                                <th></th>
-                            </tr>
-                        </thead>
-                        <tbody>
+            <div class="table-responsive">
+                <table class="table align-middle text-center">
+                    <thead>
+                        <tr>
+                            <th>Şəkil</th>
+                            <th>Məhsul</th>
+                            <th>Qiymət</th>
+                            <th>Say</th>
+                            <th>Cəm</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
                         @foreach (var item in Model)
                         {
-                                    <tr>
-                                        <td>
-                                            <img src="~/images/@item.ImageUrl" alt="@item.Name" class="product-img" />
-                                        </td>
-                                        <td>@item.Name</td>
-                                        <td>@($"{item.Price:F2} azn")</td>
-                                        <td>@item.Count</td>
-                                        <td>@($"{(item.Price * item.Count):F2} azn")</td>
-                                        <td>
-                                            <form asp-controller="Basket" asp-action="RemoveFromBasket" asp-route-id="@item.ProductId" method="post" style="display:inline;">
-                                                <button type="submit" class="btn btn-sm btn-danger">Sil</button>
-                                            </form>
-                                        </td>
-                                    </tr>
-                        }
-                        </tbody>
-                        <tfoot>
                             <tr>
-                                <th colspan="4" class="text-end">Cəmi:</th>
-                                <th colspan="2" style="color:#d63384; font-weight: 700;">
-                                @($"{Model.Sum(x => x.Price * x.Count):F2} azn")
-                                </th>
+                                <td><img src="~/images/@item.ImageUrl" alt="@item.Name" class="product-img" /></td>
+                                <td>@item.Name</td>
+                                <td>@($"{item.Price:F2} azn")</td>
+                                <td>
+                                    <div class="quantity-control">
+                                        <div class="quantity-buttons">
+                                            <button type="button" onclick="decreaseQty(@item.ProductId, @item.Price)">−</button>
+                                            <input id="qty-@item.ProductId" type="text" value="@item.Count" readonly />
+                                            <button type="button" onclick="increaseQty(@item.ProductId, @item.Price)">+</button>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td>
+                                    <span id="total-@item.ProductId">@($"{(item.Price * item.Count):F2} azn")</span>
+                                </td>
+                                <td>
+                                    <form asp-controller="Basket" asp-action="RemoveFromBasket" asp-route-id="@item.ProductId" method="post" style="display:inline;">
+                                        <button type="submit" class="btn btn-sm btn-danger btn-custom">Sil</button>
+                                    </form>
+                                </td>
                             </tr>
-                        </tfoot>
-                    </table>
-                </div>
+                        }
+                    </tbody>
+                    <tfoot>
+                        <tr>
+                            <th colspan="4" class="text-end">Cəmi:</th>
+                            <th colspan="2" class="total-cell" id="grandTotal">
+                                @($"{Model.Sum(x => x.Price * x.Count):F2} azn")
+                            </th>
+                        </tr>
+                    </tfoot>
+                </table>
+            </div>
 
-                <div class="action-buttons d-flex flex-wrap justify-content-between gap-3 mt-4">
-                    <form asp-action="ClearBasket" method="post" class="flex-grow-1 flex-shrink-1">
-                        <button type="submit" class="btn btn-danger w-100">🗑️ Səbəti təmizlə</button>
-                    </form>
-
-                    <a asp-controller="Shop" asp-action="Index" class="btn btn-warning flex-grow-1 flex-shrink-1 w-100 text-center">🛍️ Alış-verişə davam et</a>
-
-                    <form asp-controller="Basket" asp-action="Checkout" method="post" class="flex-grow-1 flex-shrink-1">
-                        <button type="submit" class="btn btn-success w-100">💳 Ödəniş et</button>
-                    </form>
-                </div>
+            <div class="d-flex flex-wrap justify-content-between gap-3 mt-4">
+                <form asp-action="ClearBasket" method="post" class="flex-grow-1">
+                    <button type="submit" class="btn btn-danger btn-custom w-100">🗑️ Səbəti təmizlə</button>
+                </form>
+                <a asp-controller="Shop" asp-action="Index" class="btn btn-warning btn-custom w-100">🛍️ Alış-verişə davam et</a>
+                <form asp-controller="Basket" asp-action="Checkout" method="post" class="flex-grow-1">
+                    <button type="submit" class="btn btn-success btn-custom w-100">💳 Ödəniş et</button>
+                </form>
+            </div>
         }
     </div>
+
+    <script>
+        function increaseQty(id, price) {
+            const qtyInput = document.getElementById(`qty-${id}`);
+            const totalCell = document.getElementById(`total-${id}`);
+            let value = parseInt(qtyInput.value);
+            if (!isNaN(value)) {
+                value++;
+                qtyInput.value = value;
+                totalCell.innerText = (value * price).toFixed(2) + ' azn';
+                updateGrandTotal();
+            }
+        }
+
+        function decreaseQty(id, price) {
+            const qtyInput = document.getElementById(`qty-${id}`);
+            const totalCell = document.getElementById(`total-${id}`);
+            let value = parseInt(qtyInput.value);
+            if (!isNaN(value) && value > 1) {
+                value--;
+                qtyInput.value = value;
+                totalCell.innerText = (value * price).toFixed(2) + ' azn';
+                updateGrandTotal();
+            }
+        }
+
+        function updateGrandTotal() {
+            let total = 0;
+            const qtyInputs = document.querySelectorAll('input[id^="qty-"]');
+            qtyInputs.forEach(input => {
+                const id = input.id.replace('qty-', '');
+                const price = parseFloat(document.getElementById(`total-${id}`).innerText);
+                total += parseFloat(input.value) * parseFloat(input.getAttribute("data-price") || 0);
+            });
+
+            // Yenidən hesablama (alternativ sadə metod)
+            let allTotals = document.querySelectorAll('span[id^="total-"]');
+            let sum = 0;
+            allTotals.forEach(el => {
+                sum += parseFloat(el.innerText.replace(' azn', ''));
+            });
+
+            document.getElementById('grandTotal').innerText = sum.toFixed(2) + ' azn';
+        }
+    </script>
 </body>
 </html>
