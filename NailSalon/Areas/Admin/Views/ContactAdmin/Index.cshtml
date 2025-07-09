@@ -1,0 +1,34 @@
+﻿@model List<NailSalon.Core.Models.ContactMessage>
+
+<h2 class="text-center my-4">Gələn Mesajlar 📬</h2>
+
+@if (TempData["Success"] != null)
+{
+    <div class="alert alert-success text-center">@TempData["Success"]</div>
+}
+
+<table class="table table-striped table-bordered">
+    <thead>
+        <tr>
+            <th>Ad</th>
+            <th>Email</th>
+            <th>Mesaj</th>
+            <th>Status</th>
+            <th>Əməliyyat</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var msg in Model)
+        {
+            <tr>
+                <td>@msg.FullName</td>
+                <td>@msg.Email</td>
+                <td>@msg.Message</td>
+                <td>@(msg.IsReplied ? "✅ Cavablandı" : "❌ Cavabsız")</td>
+                <td>
+                    <a href="@Url.Action("Reply", "ContactAdmin", new { area = "Admin", id = msg.Id })" class="btn btn-primary btn-sm">Cavabla</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

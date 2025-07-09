@@ -1,0 +1,83 @@
+﻿@using NailSalon.Core.ViewModels
+@model NailTypeVm
+
+@{
+    ViewData["Title"] = "Add New Nail Type";
+}
+
+<div class="container py-5">
+    <h2 class="text-center mb-4" style="color: #d63384;"> Add a New Nail Type</h2>
+
+    <form asp-action="Create" enctype="multipart/form-data" method="post" class="w-50 mx-auto shadow p-4 rounded bg-white">
+        <div class="mb-3">
+            <label asp-for="Title" class="form-label">Title</label>
+            <input asp-for="Title" class="form-control" />
+            <span asp-validation-for="Title" class="text-danger"></span>
+        </div>
+        <div class="mb-3">
+            <label asp-for="Zodiac" class="form-label">Zodiac</label>
+            <input asp-for="Zodiac" class="form-control" />
+            <span asp-validation-for="Zodiac" class="text-danger"></span>
+        </div>
+
+        <div class="mb-3">
+            <label asp-for="Price" class="form-label">Price (AZN)</label>
+            <input asp-for="Price" class="form-control" />
+            <span asp-validation-for="Price" class="text-danger"></span>
+        </div>
+
+        <div class="mb-3">
+            <label asp-for="FormFile" class="form-label">Select Image</label>
+            <input asp-for="FormFile" type="file" class="form-control" />
+            <span asp-validation-for="FormFile" class="text-danger"></span>
+        </div>
+
+        <div class="text-center">
+            <button type="submit" class="btn-soft-pink px-4">Add</button>
+
+            <a asp-action="Index" class="btn-back ms-2">Back</a>
+        </div>
+        <style>
+            .btn-soft-pink {
+                background-color: #f8c1d8;
+                color: #8b2d56;
+                font-weight: 600;
+                font-size: 15px;
+                padding: 10px 22px;
+                border-radius: 12px;
+                border: none;
+                transition: background-color 0.3s ease, transform 0.2s ease;
+                box-shadow: 0 4px 12px rgba(248, 193, 216, 0.4);
+            }
+
+                .btn-soft-pink:hover {
+                    background-color: #f4a8c4;
+                    color: #6e2042;
+                    transform: translateY(-2px);
+                    text-decoration: none;
+                }
+
+            .btn-back {
+                background-color: #fcd3e1; /* yumşaq pastel çəhrayı */
+                color: #a63e6d; /* gül qurusu yazı */
+                font-weight: 600;
+                padding: 10px 22px;
+                border-radius: 12px;
+                border: none;
+                transition: background-color 0.3s ease, transform 0.2s ease;
+                box-shadow: 0 4px 12px rgba(255, 182, 193, 0.3); /* shadow: light pink */
+                text-decoration: none;
+            }
+
+
+            .btn :hover {
+                background-color: #f8b9cf;
+                color: #8c355c;
+                transform: translateY(-2px);
+                text-decoration: none;
+            }
+        </style>
+
+    </form>
+</div>
+

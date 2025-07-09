@@ -1,0 +1,51 @@
+﻿@model NailSalon.Core.ViewModels.ReviewVm
+
+@{
+    ViewData["Title"] = "Rəy Yaz";
+}
+
+<div class="container py-5">
+    <h2 class="text-center mb-4 text-pink">💬 Bizimlə təəssüratını paylaş!</h2>
+
+    <div class="card shadow-sm p-4 rounded-4 bg-white-pink mx-auto" style="max-width: 600px;">
+        <form asp-action="CreateReview" asp-route-email="@User.Identity.Name" method="post">
+            
+
+            <div class="mb-3">
+                <label asp-for="Comment" class="form-label text-muted">Rəyiniz</label>
+                <textarea asp-for="Comment" class="form-control rounded-3" rows="4" placeholder="Təcrübənizi bizimlə bölüşün 💕"></textarea>
+                <span asp-validation-for="Comment" class="text-danger"></span>
+            </div>
+
+            <div class="text-center mt-4">
+                <button type="submit" class="btn btn-pink px-4 py-2 rounded-pill">Göndər 💖</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+<style>
+    body {
+        background-color: #fff0f6;
+        font-family: 'Segoe UI', sans-serif;
+    }
+
+    .text-pink {
+        color: #d63384;
+        font-family: 'Marck Script', cursive;
+    }
+
+    .bg-white-pink {
+        background-color: #fff8fc;
+    }
+
+    .btn-pink {
+        background-color: #d63384;
+        color: white;
+        border: none;
+    }
+
+        .btn-pink:hover {
+            background-color: #b03060;
+        }
+</style>

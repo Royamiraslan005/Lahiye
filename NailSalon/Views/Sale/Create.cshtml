@@ -1,0 +1,32 @@
+﻿@model NailSalon.Core.ViewModels.SaleVm
+@{
+    ViewData["Title"] = "Məhsul Al";
+}
+
+<h2>Məhsul Al</h2>
+
+<form asp-controller="Sale" asp-action="Create" method="post">
+    <div class="form-group">
+        <label>Məhsul:</label>
+        <select asp-for="ProductId" class="form-control">
+            @foreach (var product in ViewBag.Products as List<NailSalon.Core.Models.ShopProduct>)
+            {
+                <option value="@product.Id">@product.Name - @product.Price AZN</option>
+            }
+        </select>
+    </div>
+
+    <div class="form-group">
+        <label>Miqdar:</label>
+        <input asp-for="Quantity" type="number" class="form-control" min="1" value="1" />
+        <span asp-validation-for="Quantity" class="text-danger"></span>
+    </div>
+
+    <button type="submit" class="btn btn-primary mt-3">Stripe ilə Ödə</button>
+</form>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

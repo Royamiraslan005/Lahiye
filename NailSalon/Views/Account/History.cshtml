@@ -1,0 +1,255 @@
+﻿@model List<NailSalon.Core.ViewModels.ReservationInfoVm>
+
+@{
+    ViewData["Title"] = "Keçmiş Rezervasiyalar";
+
+    string zodiac = (ViewBag.Zodiac as string)?.ToLower() ?? "";
+
+    string zodiacClass = zodiac switch
+    {
+        "qoç" => "zodiac-qoc",
+        "buğa" => "zodiac-buga",
+        "əkizlər" => "zodiac-ekizler",
+        "xərçəng" => "zodiac-xerceng",
+        "şir" => "zodiac-sir",
+        "qız" => "zodiac-qiz",
+        "tərəzi" => "zodiac-terezi",
+        "əqrəb" => "zodiac-eqreb",
+        "oxatan" => "zodiac-oxatan",
+        "oğlaq" => "zodiac-oglaq",
+        "dolça" => "zodiac-dolca",
+        "balıq" => "zodiac-baliq",
+        _ => ""
+    };
+}
+
+<!DOCTYPE html>
+<html lang="az">
+<head>
+    <meta charset="UTF-8" />
+    <title>@ViewData["Title"]</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <style>
+        body {
+            font-family: 'Segoe UI', sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 50px auto;
+            background: rgba(255, 255, 255, 0.7);
+            padding: 30px;
+            border-radius: 16px;
+            box-shadow: 0 0 15px rgba(255, 105, 180, 0.2);
+            animation: fadeIn 1s ease-in-out;
+        }
+
+        h2 {
+            text-align: center;
+            color: #d63384;
+            margin-bottom: 25px;
+        }
+
+        .responsive-table-wrapper {
+            overflow-x: auto;
+        }
+
+        .reservation-table {
+            width: 100%;
+            border-collapse: collapse;
+            min-width: 600px;
+            animation: slideUp 1s ease-in-out;
+        }
+
+        .reservation-table th,
+        .reservation-table td {
+            padding: 12px;
+            text-align: center;
+            border: 1px solid #ffd1e6;
+        }
+
+        .reservation-table th {
+            background-color: #ffe4ec;
+            color: #d63384;
+        }
+
+        .reservation-table tbody tr:hover {
+            background-color: #ffeaf4;
+            transition: background 0.3s ease;
+        }
+
+        .menu-list {
+            padding-left: 16px;
+            margin: 0;
+            list-style-type: disc;
+            text-align: left;
+        }
+
+        .text-muted {
+            color: #999;
+            font-style: italic;
+        }
+
+        .back-btn {
+            display: inline-block;
+            margin-top: 30px;
+            padding: 10px 20px;
+            background-color: #d63384;
+            color: white;
+            text-decoration: none;
+            border-radius: 10px;
+            font-weight: bold;
+            box-shadow: 0 6px 12px rgba(255, 105, 180, 0.3);
+            transition: background 0.3s ease;
+        }
+
+        .back-btn:hover {
+            background-color: #b02c6f;
+        }
+
+        /* Animasiya qaydaları */
+        @@keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @@keyframes slideUp {
+            from {
+                transform: translateY(40px);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        /* Bürclərə görə arxa fonlar */
+        .zodiac-qoc {
+            background: linear-gradient(to right, #ffe6e6, #ffd6cc);
+        }
+
+        .zodiac-buga {
+            background: linear-gradient(to right, #e6ffe6, #ccffcc);
+        }
+
+        .zodiac-ekizler {
+            background: linear-gradient(to right, #e6f7ff, #cceeff);
+        }
+
+        .zodiac-xerceng {
+            background: linear-gradient(to right, #fff0f5, #ffe4ec);
+        }
+
+        .zodiac-sir {
+            background: linear-gradient(to right, #fff9e6, #ffeabf);
+        }
+
+        .zodiac-qiz {
+            background: linear-gradient(to right, #e6fff9, #ccfff2);
+        }
+
+        .zodiac-terezi {
+            background: linear-gradient(to right, #fcefff, #f3e6ff);
+        }
+
+        .zodiac-eqreb {
+            background: linear-gradient(to right, #ffe6f2, #ffcce6);
+        }
+
+        .zodiac-oxatan {
+            background: linear-gradient(to right, #fffde6, #fff5cc);
+        }
+
+        .zodiac-oglaq {
+            background: linear-gradient(to right, #f2f2f2, #e6e6e6);
+        }
+
+        .zodiac-dolca {
+            background: linear-gradient(to right, #e6f7ff, #ccf2ff);
+        }
+
+        .zodiac-baliq {
+            background: linear-gradient(to right, #e6ecff, #ccd9ff);
+        }
+
+        /* Mobil üçün uyğunluq */
+        @@media (max-width: 768px) {
+            .container {
+                margin: 20px;
+                padding: 20px;
+            }
+
+            .reservation-table th,
+            .reservation-table td {
+                font-size: 14px;
+                padding: 10px 6px;
+            }
+
+            .menu-list {
+                padding-left: 12px;
+            }
+        }
+    </style>
+</head>
+<body class="@zodiacClass">
+    <div class="container">
+        <h2>📜 Keçmiş Rezervasiyalar</h2>
+
+        @if (Model != null && Model.Any())
+        {
+            <div class="responsive-table-wrapper">
+                <table class="reservation-table">
+                    <thead>
+                        <tr>
+                            <th>Usta</th>
+                            <th>Dizayn</th>
+                            <th>Tarix</th>
+                            <th>Menyu</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+                                <td>@item.MasterName</td>
+                                <td>@item.DesignName</td>
+                                <td>@item.Date.ToString("dd.MM.yyyy HH:mm")</td>
+                                <td>
+                                    @if (item.MenuItems != null && item.MenuItems.Any())
+                                    {
+                                        <ul class="menu-list">
+                                            @foreach (var menu in item.MenuItems)
+                                            {
+                                                <li>@menu.Name</li>
+                                            }
+                                        </ul>
+                                    }
+                                    else
+                                    {
+                                        <span class="text-muted">Seçilməyib</span>
+                                    }
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        }
+        else
+        {
+            <p class="text-muted">Keçmiş rezervasiya yoxdur.</p>
+        }
+
+        <a href="/Account/Profile" class="back-btn">← Geri Profilə</a>
+    </div>
+</body>
+</html>

@@ -1,0 +1,65 @@
+﻿@using NailSalon.Core.ViewModels
+@model List<NailTypeVm>
+
+<section class="py-5 bg-light">
+    <style>
+        .fade-in-up {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.5s ease-out, transform 0.5s ease-out;
+        }
+
+            .fade-in-up.show {
+                opacity: 1;
+                transform: translateY(0);
+            }
+
+        .card {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+            .card:hover {
+                transform: translateY(-10px);
+                box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+            }
+    </style>
+
+    <div class="container">
+        <h2 class="text-center mb-5" style="color:#680427;">Nail Types</h2>
+        <div class="row g-4">
+            @foreach (var item in Model)
+            {
+                <div class="col-md-6 col-lg-3">
+                    <div class="card h-100 shadow-sm fade-in-up">
+                        <a asp-action="Detail" asp-controller="NailType" asp-route-id="@item.Id" style="text-decoration: none; color: inherit;">
+                            <img height="300" src="~/images/@item.ImageUrl" class="card-img-top" alt="@item.Title" style="cursor: pointer;" />
+                        </a>
+                        <div class="card-body text-center">
+                            <h5 class="card-title">@item.Title</h5>
+                            <p class="card-text text-muted">@item.Price</p>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const elements = document.querySelectorAll(".fade-in-up");
+
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add("show");
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, {
+                threshold: 0.1
+            });
+
+            elements.forEach(el => observer.observe(el));
+        });
+    </script>
+</section>

@@ -1,0 +1,70 @@
+﻿@model NailSalon.Core.ViewModels.ServicesVm
+
+@{
+    ViewData["Title"] = "Xidməti Redaktə Et";
+}
+
+<div class="container py-5">
+    <h2 class="text-center mb-4" style="color: #d63384;">Xidməti Redaktə Et</h2>
+
+    <form asp-action="Update" enctype="multipart/form-data" method="post" class="needs-validation" novalidate>
+        <input type="hidden" asp-for="Id" />
+
+        <div class="mb-3">
+            <label asp-for="Title" class="form-label fw-semibold">Başlıq</label>
+            <input asp-for="Title" class="form-control" required />
+            <span asp-validation-for="Title" class="text-danger"></span>
+        </div>
+
+        <div class="mb-3">
+            <label asp-for="Description" class="form-label fw-semibold">Açıqlama</label>
+            <textarea asp-for="Description" class="form-control" rows="4" required></textarea>
+            <span asp-validation-for="Description" class="text-danger"></span>
+        </div>
+
+        <div class="mb-3">
+            @* Hazırki şəkli göstər *@
+            @if (!string.IsNullOrEmpty(Model.ImageUrl))
+            {
+                <div class="mb-2">
+                    <label class="form-label fw-semibold">Hazırki şəkil:</label>
+                    <div class="card shadow-sm" style="width: 200px;">
+                        <img src="/images/@Model.ImageUrl" class="card-img-top" alt="Şəkil" style="height: 200px; object-fit: cover;" />
+                    </div>
+                </div>
+            }
+        </div>
+
+        <div class="mb-3">
+            <label asp-for="FormFile" class="form-label fw-semibold">Yeni Şəkil Yüklə</label>
+            <input asp-for="FormFile" class="form-control" type="file" />
+            <span asp-validation-for="FormFile" class="text-danger"></span>
+        </div>
+
+        <div class="text-center mt-4">
+            <button type="submit" class="btn btn-add-service px-5 py-2"> Yadda Saxla</button>
+        </div>
+
+        <div asp-validation-summary="All" class="text-danger mt-3"></div>
+        <style>
+            .btn-add-service {
+                background-color: #f8c1d8;
+                color: #8b2d56;
+                font-weight: 600;
+                font-size: 15px;
+                padding: 10px 22px;
+                border-radius: 12px;
+                border: none;
+                transition: background-color 0.3s ease, transform 0.2s ease;
+                box-shadow: 0 4px 12px rgba(248, 193, 216, 0.4);
+            }
+
+                .btn-add-service:hover {
+                    background-color: #f4a8c4;
+                    color: #6e2042;
+                    transform: translateY(-2px);
+                    text-decoration: none;
+                }
+        </style>
+    </form>
+</div>

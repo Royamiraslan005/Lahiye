@@ -1,0 +1,107 @@
+﻿@using NailSalon.Core.ViewModels
+@model MasterVm
+
+<style>
+    .hero-section {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 60px 30px;
+        background-color: #fff0f5;
+        border-radius: 20px;
+        box-shadow: 0 0 20px rgba(255, 105, 180, 0.2);
+        margin-top: 40px;
+        position: relative;
+        overflow: hidden;
+    }
+
+    .hero-text {
+        flex: 1;
+        padding-right: 30px;
+        z-index: 2;
+    }
+
+        .hero-text h1 {
+            font-size: 2rem;
+            font-weight: bold;
+            color: #d63384;
+            margin-bottom: 20px;
+        }
+
+        .hero-text p {
+            font-size: 1.2rem;
+            color: #555;
+            margin-bottom: 25px;
+            line-height: 1.6;
+        }
+
+    .btn-book {
+        background: linear-gradient(to right, #ff69b4, #ff1493);
+        color: white;
+        padding: 12px 30px;
+        font-size: 1rem;
+        border-radius: 30px;
+        border: none;
+        text-decoration: none;
+        transition: all 0.3s ease-in-out;
+    }
+
+        .btn-book:hover {
+            transform: scale(1.05);
+            background: linear-gradient(to right, #ff1493, #ff69b4);
+        }
+
+    .hero-img {
+        position: relative;
+        z-index: 1;
+    }
+
+        .hero-img img {
+            width: 300px;
+            height: auto;
+            border-radius: 15px;
+            transform: rotate(-2deg);
+            border: 5px solid #fff;
+            box-shadow: 0 0 20px rgba(255, 105, 180, 0.3);
+        }
+
+    .hero-decor {
+        position: absolute;
+        right: -60px;
+        bottom: -40px;
+        width: 300px;
+        height: 300px;
+        background: radial-gradient(circle, #ffc0cb 0%, #fff0f5 100%);
+        border-radius: 50%;
+        z-index: 0;
+        opacity: 0.4;
+    }
+
+    @@media only screen and (max-width:766px) {
+        .hero-section {
+            flex-direction:column-reverse;
+        } 
+        .hero-img img {
+            max-width: 250px;
+        }
+    }
+
+</style>
+
+<div class="container">
+    <div class="hero-section">
+        <div class="hero-text">
+            <h1>Salam, mən @Model.FullName </h1>
+            <p><strong>Təcrübəm:</strong> @Model.Experience il – bu sahədə sevgi ilə çalışan təcrübəli ustayam.</p>
+            <p><strong>İxtisasım:</strong> @Model.Specialty – xüsusi dizaynlar və fərdi yanaşma ilə xidmət göstərirəm.</p>
+            <p><strong>Bürcüm:</strong> @Model.Zodiac – bürc enerjisini dizaynlara köçürən yaradıcı ruh!</p>
+            <a asp-controller="Reservation" asp-action="Create" asp-route-masterId="@Model.Id" class="btn-book"> Rezervasiya et</a>
+        </div>
+
+        <div class="hero-img">
+            <img src="~/IMAGE/@Model.ImageUrl" alt="@Model.FullName" />
+        </div>
+
+        <div class="hero-decor"></div>
+    </div>
+</div>

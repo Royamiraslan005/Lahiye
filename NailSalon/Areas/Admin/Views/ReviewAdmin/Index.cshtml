@@ -1,0 +1,75 @@
+﻿@model IEnumerable<NailSalon.Core.ViewModels.ReviewVm>
+
+@{
+    ViewData["Title"] = "Rəylər";
+    var isAdmin = User.IsInRole("Admin");
+}
+
+<div class="container py-5">
+    <h2 class="text-center mb-4 text-pink">💗 Müştəri Rəyləri</h2>
+
+    <div class="row g-4">
+        @foreach (var review in Model)
+        {
+            <div class="col-md-4">
+                <div class="card p-3 shadow-sm bg-white-pink rounded-4 h-100 d-flex flex-column justify-content-between">
+                    <div class="card-body">
+                        <h5 class="card-title text-pink">@review.Email</h5>
+                        <p class="card-text">@review.Comment</p>
+                    </div>
+
+                    <form asp-action="Delete" asp-route-id="@review.Id" method="post" class="text-end px-3 pb-2">
+                        <button type="submit" class="btn btn-sm btn-outline-danger"
+                                onclick="return confirm('Are you sure you want to delete this review?');">
+                            Delete
+                        </button>
+                    </form>
+
+                </div>
+            </div>
+        }
+    </div>
+
+</div>
+
+<style>
+    body {
+        background-color: #fff0f6;
+    }
+
+    .text-pink {
+        color: #d63384;
+        font-family: 'Marck Script', cursive;
+    }
+
+    .bg-white-pink {
+        background-color: #fff8fc;
+    }
+
+    .btn-pink {
+        background-color: #d63384;
+        color: white;
+        border: none;
+        font-weight: bold;
+        font-size: 16px;
+    }
+
+        .btn-pink:hover {
+            background-color: #b03060;
+        }
+
+    .card-title {
+        font-family: 'Segoe UI', sans-serif;
+        font-size: 20px;
+    }
+
+    .card-text {
+        font-size: 15px;
+        color: #333;
+    }
+
+    .btn-outline-primary, .btn-outline-danger {
+        font-size: 13px;
+        padding: 4px 10px;
+    }
+</style>

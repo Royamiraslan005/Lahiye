@@ -1,0 +1,569 @@
+﻿@using NailSalon.Core.ViewModels
+@model ReviewVm
+
+<section id="slider">
+    <div class="swiper slider">
+        <div class="swiper-wrapper">
+            <style>
+                   @@media (max-width: 900px) {
+                       .slider-title {
+                           font-size:35px !important;
+                           margin-top: 30px !important;
+                       }
+                       .slider-desc {
+                           font-size: 20px !important;
+                           margin-top: 30px !important;
+                       }
+                   }
+
+                   @@media (max-width: 720px) {
+                       .slider-title {
+                           font-size:25px !important;
+                           margin-top: 10px !important;
+                       }
+                       .slider-desc {
+                           font-size: 16px !important;
+                           margin-top: 20px !important;
+                       }
+                       .absolute-div {
+                           top: 4% !important;
+                       }
+                   }
+            </style>
+            <!-- Slide 1 (img ilə) -->
+            <div class="swiper-slide d-flex position-relative">
+                <img src="Assets/images/Group 2.png" alt="Banner Image" class=" w-100" style="object-fit: cover; top: 0; left: 0; z-index: 0; ">
+
+                <div class="absolute-div" style="
+                       position: absolute;
+                       top: 8%;
+                       left: 6%;
+                       color: #4A0020;
+        z-index: 1;
+        text-align: left;
+                ">
+                    <h2 style="font-size: 56px; font-weight: 700; margin-top: 40px;" class='slider-title'>
+                        Stilini bürcünlə tamamla!
+                    </h2>
+                    <h3 class='slider-desc' style="font-size: 28px; font-style: italic; font-weight: 400; line-height: 1.5; margin-top:40px">
+                        Bürcünün ilhamı ilə öz stilini yaşayan, güclü və zövqlü <br>
+                        qadınların dırnaq cənnəti.
+                    </h3>
+                </div>
+            </div>
+
+        </div>
+    </div>
+    </div>
+    <div class="position-absolute top-0 bottom-0 end-0 m-auto me-0 me-md-5 main-slider-button-next">
+        <svg class="arrow-right light-color" width="60" height="60">
+            <use xlink:href="#arrow-right"></use>
+        </svg>
+    </div>
+    <div class="position-absolute top-0 bottom-0 start-0 m-auto ms-0 ms-md-5 main-slider-button-prev">
+        <svg class="arrow-left light-color" width="60" height="60">
+            <use xlink:href="#arrow-left"></use>
+        </svg>
+    </div>
+    </div>
+</section>
+<section id="about" class="py-5" style="background-color: #fff6fb;">
+    <div class="container-lg padding-medium">
+        <div class="text-center mb-5">
+            <h2 class="display-5" style="color:#680427; font-family: 'Marck Script', cursive;"> About</h2>
+            <h2 class="lead text-muted mx-auto" style="max-width: 700px;">
+                Zodiac — bürclərə və estetikaya uyğun dırnaq sənətinin ünvanıdır. Həm gözəllik, həm də fərdilik burada birləşir.
+            </h2>
+        </div>
+
+        <style>
+            .custom-cards-row {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            }
+
+            .custom-cards-row .col-md-3 {
+            flex: 1 1 calc(25% - 1rem);
+            max-width: calc(25% - 1rem);
+            box-sizing: border-box;
+            }
+
+            @@media (min-width: 768px) and (max-width: 1024px) {
+            .custom-cards-row .col-md-3
+
+            {
+            flex: 1 1 calc(50% - 1rem);
+            max-width: calc(50% - 1rem);
+            }
+
+            }
+
+            @@media (max-width: 767px) {
+            .custom-cards-row .col-md-3
+
+            {
+            flex: 1 1 100%;
+            max-width: 100%;
+            }
+
+            }
+        </style>
+
+        <div class="row g-md-4 text-center custom-cards-row">
+            <!-- Bürc Dizaynı -->
+            <div class="col-md-3 mb-4">
+                <div class="bg-white shadow rounded-4 text-center" style="padding: 0px 8px; height: 320px; display: flex; align-items: center; justify-content: center; flex-direction: column">
+
+
+                    <!-- Üst şəkil (ikon) -->
+                    <img src="Assets/images/burc.jpg" alt="Burc"
+                    style="width: 150px; height: 135px; ">
+                    <h5 class="fw-semibold my-2" style="color: black">12 Bürc Dizaynı</h5>
+                    <p class="text-muted mb-0" style="color: black">Hər bürcə uyğun xüsusi dırnaq dizaynları.</p>
+                </div>
+            </div>
+
+
+            <!-- Unikal Stil -->
+            <div class="col-md-3 mb-4">
+                <div class="bg-white shadow rounded-4 text-center" style="padding: 0px 8px; height: 320px; display: flex; align-items: center; justify-content: center; flex-direction: column">
+                    <img src="Assets/images/unikal.jpg" alt="Unikal"
+                    style="width: 150px; height: 135px; ">
+                    <h5 class="fw-semibold my-2" style="color: black">Unikal Stil</h5>
+                    <p class="text-muted mb-0" style="color: black">Minimalistdən ekstravaqant dizaynlara qədər seçimlər.</p>
+                </div>
+            </div>
+
+            <!-- Ad günü Endirimi -->
+            <div class="col-md-3 mb-4">
+                <div class="bg-white shadow rounded-4 text-center" style="padding: 0px 8px; height: 320px; display: flex; align-items: center; justify-content: center; flex-direction: column">
+                    <img src="Assets/images/adgunu.jpg" alt="Ad gunu"style="width: 100px; height: 135px; ">
+                    <h5 class="fw-semibold my-2" style="color: black">Ad günü Endirimi</h5>
+                    <p class="text-muted mb-0" style="color: black">Ad gününüzə özəl 30% endirim sizi gözləyir!</p>
+                </div>
+            </div>
+
+            <!-- Qonaqpərvərlik -->
+            <div class="col-md-3 mb-4">
+                <div class="bg-white shadow rounded-4 text-center" style="padding: 0px 8px; height: 320px; display: flex; align-items: center; justify-content: center; flex-direction: column">
+                    <img src="Assets/images/qonaq.png" alt="İçki İkonsu"
+                    style="width: 218px; height: 149.11px; ">
+
+                    <!-- Yazılar -->
+                    <h5 class="fw-semibold my-2" style="color: black">Qonaqpərvərlik</h5>
+                    <p class="mb-0" style="color: black">Seçiminizə uyğun içkilər və şirniyyatlar təqdim olunur.</p>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+
+<section id="services" class="jarallax"
+         style="background-image: url(images/background-1.jpg); background-size: cover; background-repeat: no-repeat; background-position: center;">
+    <div class="container-xl px-3 px-md-5">
+        <div class="section-title text-center mb-5">
+            <h2 class="display-4 fw-normal" style="color: #680427;">Services we Offer</h2>
+        </div>
+
+        <style>
+            .service-card {
+                border-radius: 0;
+                overflow: hidden;
+                transition: transform 0.3s ease, box-shadow 0.3s ease;
+                height: 100%;
+                background-color: white;
+                display: flex;
+                flex-direction: column;
+            }
+
+                .service-card:hover {
+                    transform: translateY(-8px) scale(1.03);
+                    box-shadow: 0 12px 25px rgba(0, 0, 0, 0.15);
+                }
+
+            .image-wrapper {
+                width: 100%;
+                height: 250px;
+                overflow: hidden;
+            }
+
+            .service-card img {
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+                transition: transform 0.3s ease;
+                display: block;
+            }
+
+            .service-card:hover img {
+                transform: scale(1.05);
+            }
+
+            .card-body {
+                text-align: center;
+                padding: 1rem;
+            }
+
+                .card-body h5 {
+                    color: #680427;
+                    font-weight: 600;
+                    margin: 0;
+                    transition: color 0.3s ease;
+                }
+
+            /* Mobil üçün düzəlişlər */
+            @@media (max-width: 767.98px) {
+                .image-wrapper
+
+            {
+                height: 200px;
+            }
+
+            .card-body h5 {
+                font-size: 1.1rem;
+            }
+
+            .container-xl {
+                padding-left: 0.5rem;
+                padding-right: 0.5rem;
+            }
+
+            }
+        </style>
+
+        <div class="row g-4">
+
+            @foreach (var item in ViewBag.Services as List<ServicesVm>)
+            {
+                <div class="col-12 col-sm-6 col-lg-4">
+                    <div class="card service-card h-100 shadow-sm border-0">
+                        <a href="@Url.Action("Detail", "Services", new { id = item.Id })" style="text-decoration:none;">
+                            <div class="image-wrapper">
+                                <img src="~/images/@item.ImageUrl" class="card-img-top" alt="@item.Title">
+                            </div>
+                        </a>
+                        <div class="card-body">
+                            <a href="@Url.Action("Detail", "Services", new { id = item.Id })" class="text-decoration-none w-100">
+                                <h5 class="card-title">@item.Title</h5>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            }
+
+        </div>
+    </div>
+</section>
+
+
+
+<div class="container py-5">
+    <h2 class="text-center mb-5" style="color: #680427;">Our Professional Masters</h2>
+
+    <style>
+        .btn-pink {
+            background-color: transparent !important;
+            color: #e83e8c !important;
+            border: 1px solid #e83e8c !important;
+            transition: all 0.3s ease;
+        }
+
+            .btn-pink:hover {
+                background-color: #e83e8c !important;
+                color: white !important;
+            }
+
+        .master-card {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            border-radius: 10px;
+            overflow: hidden;
+        }
+
+            .master-card:hover {
+                transform: translateY(-5px);
+                box-shadow: 0 12px 25px rgba(0, 0, 0, 0.15);
+            }
+
+            .master-card img {
+                width: 100%;
+                height: 300px;
+                object-fit: cover;
+                transition: transform 0.3s ease;
+            }
+
+            .master-card:hover img {
+                transform: scale(1.03);
+            }
+
+            .master-card .card-body h5,
+            .master-card .card-body p {
+                color: #680427;
+            }
+
+        @@media (max-width: 768px) {
+            .master-card img
+
+        {
+            height: 240px;
+             object-fit: cover;
+        }
+
+        .master-card .card-body {
+            padding: 1rem;
+        }
+
+        }
+    </style>
+
+    <div class="row g-4">
+        @foreach (var item in ViewBag.MasterVms as List<MasterVm>)
+        {
+            <div class="col-12 col-sm-6 col-lg-3">
+                <div class="card master-card h-100 shadow-sm text-center border-0">
+                    <a asp-action="Detail" asp-controller="Master" asp-route-id="@item.Id">
+                        <img src="~/IMAGE/@item.ImageUrl" class="card-img-top" alt="@item.FullName" />
+                    </a>
+                    <div class="card-body text-start">
+                        <h5 class="card-title">@item.FullName</h5>
+                        <p class="card-text">
+                            @item.Experience <br />
+                            @item.Zodiac <br />
+                            @item.Specialty
+                        </p>
+                        <a asp-action="Create" asp-controller="Reservation" asp-route-masterId="@item.Id"
+                           class="btn btn-sm btn-pink">
+                            Rezervasiya et
+                        </a>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+</div>
+
+
+
+
+
+<section class="py-5 bg-light">
+    <div class="container-fluid px-3 px-sm-5">
+        <h2 class="text-center mb-5" style="color: #680427;">Nail Types</h2>
+        <div class="row g-4">
+            @foreach (var item in ViewBag.NailTypesVms as List<NailTypeVm>)
+            {
+                    <div class="col-12 col-md-6 col-lg-3">
+                        <div class="card h-100 shadow-sm" tabindex="0">
+                            <a asp-action="Detail" asp-controller="NailType" asp-route-id="@item.Id">
+                                <img src="~/images/@item.ImageUrl" class="card-img-top" alt="@item.Title" />
+                            </a>
+                            <div class="card-body text-center">
+                                <h5 class="card-title">@item.Title</h5>
+                                <p class="card-text text-muted">Price @item.Price</p>
+                            </div>
+                        </div>
+                    </div>
+            }
+        </div>
+    </div>
+</section>
+
+<style>
+    /* Container-fluid ilə genişlik maksimum edilir, padding isə responsive */
+    .card {
+        width: 100%;
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+        cursor: pointer;
+        border-radius: 12px;
+        overflow: hidden;
+    }
+
+    .card:hover,
+    .card:focus,
+    .card:active {
+        transform: scale(1.05);
+        box-shadow: 0 12px 24px rgba(214, 51, 132, 0.4);
+        z-index: 10;
+    }
+
+    .card img {
+        width: 100%;
+        height: 250px;
+        object-fit: cover;
+        border-top-left-radius: 12px;
+        border-top-right-radius: 12px;
+        transition: transform 0.3s ease;
+        display: block;
+    }
+
+    .card:hover img,
+    .card:focus img,
+    .card:active img {
+        transform: scale(1.1);
+    }
+
+    /* Mobil üçün */
+    @@media (max-width: 576px) {
+        .card img {
+            height: 180px;
+             object-fit: cover;
+        }
+    }
+</style>
+<div class="special-offer my-5 text-center position-relative">
+    <img src="~/images/Group 17.png" alt="Kampaniya" class="img-fluid banner-img rounded-4">
+    <div class="offer-text position-absolute top-50 start-50 translate-middle fw-bold">
+        <h4>Bu aya özəl ilk 10 müştəriyə</h4>
+        <p>
+            İstənilən dizaynda dırnağa <span class="highlight-dark">20%</span> endirim
+        </p>
+    </div>
+</div>
+
+<style>
+    .special-offer {
+        max-width: 1350px;
+        height: 400px; /* Bannerin hündürlüyü */
+        margin: 0 auto;
+        position: relative;
+        overflow: hidden;
+        border-radius: 20px;
+    }
+
+   
+    .highlight-dark {
+        color: #680427;
+        font-weight: 800;
+        text-shadow: 1px 2px 5px rgba(0, 0, 0, 0.4); /* Kölgə effekti */
+        font-size: 1.8rem;
+    }
+
+
+    .banner-img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover; /* şəkli div ölçüsünə uyğunlaşdırır */
+        position: absolute;
+        top: 0;
+        left: 0;
+        z-index: 1;
+    }
+
+    .offer-text {
+        z-index: 2;
+    }
+
+        .offer-text h4,
+        .offer-text p {
+            color: #680427;
+            text-shadow: 0 2px 6px rgba(255, 255, 255, 0.6);
+        }
+
+        .offer-text h4 {
+            font-size: 2rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .offer-text p {
+            font-size: 1.6rem;
+        }
+
+    @@media (max-width: 768px) {
+        .offer-text h4
+
+    {
+        font-size: 1.5rem;
+    }
+
+    .offer-text p {
+        font-size: 1rem;
+        padding: 0 10px;
+    }
+
+    }
+</style>
+
+
+
+        <section id="rey">
+            @{
+                ViewData["Title"] = "Rəy Yaz";
+            }
+
+            <div class="container py-5">
+                <h2 class="text-center mb-4 text-pink">Bizimlə təəssüratını paylaş!</h2>
+
+                <div class="row align-items-center">
+                    <!-- Sol tərəf: şəkil -->
+                    <div class="col-md-6 mb-4 mb-md-0">
+                        <img src="~/images/Group 14.svg" alt="Rəy Şəkli"
+                             class="img-fluid rounded-4" style="display: block; width: 100%;">
+                    </div>
+
+                    <!-- Sağ tərəf: form -->
+                    <div class="col-md-6">
+                        <div class="card shadow-sm p-4 rounded-4 bg-white-pink">
+                    <form asp-action="CreateReview" method="post">
+                        <div class="mb-3">
+                            <label asp-for="Comment" class="form-label text-muted">Rəyiniz</label>
+                            <textarea asp-for="Comment" class="form-control rounded-3" rows="4" placeholder="Təcrübənizi bizimlə bölüşün 💕"></textarea>
+                            <span asp-validation-for="Comment" class="text-danger"></span>
+                        </div>
+
+                        <div class="text-center mt-4">
+                            <button type="submit" class="btn btn-pink px-4 py-2 rounded-pill">Göndər 💖</button>
+                        </div>
+                    </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <style>
+                body {
+                    background-color: #fff0f6;
+                    font-family: 'Segoe UI', sans-serif;
+                }
+
+                .text-pink {
+                    color: #d63384;
+                    font-family: 'Marck Script', cursive;
+                }
+
+                .bg-white-pink {
+                    background-color: #fff8fc;
+                }
+
+                .btn-pink {
+                    background-color: #d63384;
+                    color: white;
+                    border: none;
+                }
+
+                    .btn-pink:hover {
+                        background-color: #b03060;
+                    }
+
+                @@media (max-width: 768px) {
+                    .text-pink
+
+                {
+                    font-size: 1.4rem;
+                }
+
+                .row.align-items-center > div {
+                    text-align: center;
+                }
+
+                img {
+                    max-width: 80%;
+                    margin: 0 auto;
+                }
+
+                }
+            </style>
+        </section>
+
+

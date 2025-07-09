@@ -1,0 +1,35 @@
+﻿@model List<NailSalon.Core.ViewModels.SaleVm>
+@{
+    ViewData["Title"] = "Satışlarım";
+}
+
+<h2>Satışlarım</h2>
+
+@if (!Model.Any())
+{
+    <div class="alert alert-info">Hələ ki, heç bir satışınız yoxdur.</div>
+}
+else
+{
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th>#</th>
+                <th>Məhsul</th>
+                <th>Miqdar</th>
+                <th>Cəmi</th>
+            </tr>
+        </thead>
+        <tbody>
+            @for (int i = 0; i < Model.Count; i++)
+            {
+                <tr>
+                    <td>@(i + 1)</td>
+                    <td>@Model[i].ProductId</td> <!-- Daha detallı məlumat üçün Product.Name əlavə edilə bilər -->
+                    <td>@Model[i].Quantity</td>
+                    <td>@Model[i].TotalPrice AZN</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}

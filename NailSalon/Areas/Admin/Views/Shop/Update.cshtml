@@ -1,0 +1,83 @@
+﻿@model NailSalon.Core.ViewModels.ShopProductVm
+
+@{
+    ViewData["Title"] = "Məhsulu Redaktə Et";
+}
+
+<div class="container mt-4">
+    <h2 class="mb-4">Məhsulu Redaktə Et</h2>
+
+    <form asp-action="Update" method="post" enctype="multipart/form-data">
+        <input type="hidden" asp-for="Id" />
+
+        <div class="mb-3">
+            <label asp-for="Name" class="form-label">Ad</label>
+            <input asp-for="Name" class="form-control" />
+            <span asp-validation-for="Name" class="text-danger"></span>
+        </div>
+
+        <div class="mb-3">
+            <label asp-for="Description" class="form-label">Açıqlama</label>
+            <textarea asp-for="Description" class="form-control"></textarea>
+            <span asp-validation-for="Description" class="text-danger"></span>
+        </div>
+
+        <div class="mb-3">
+            <label asp-for="Price" class="form-label">Qiymət</label>
+            <input asp-for="Price" class="form-control" />
+            <span asp-validation-for="Price" class="text-danger"></span>
+        </div>
+
+        <div class="mb-3">
+            <label asp-for="Category" class="form-label">Kateqoriya</label>
+            <select asp-for="Category" class="form-select" required>
+                <option value="">-- Kateqoriya seçin --</option>
+                <option value="Lac">Lac</option>
+                <option value="Baxım">Baxım</option>
+                <option value="Aksesuar">Aksesuar</option>
+                <option value="Mövsümi">Mövsümi</option>
+                <option value="Xüsusi">Xüsusi</option>
+            </select>
+            <span asp-validation-for="Category" class="text-danger"></span>
+        </div>
+
+        @* Hazırkı şəkli göstər *@
+        @if (!string.IsNullOrEmpty(Model.ImageUrl))
+        {
+            <div class="mb-3">
+                <label class="form-label">Hazırkı şəkil</label><br />
+                <img src="~/images/@Model.ImageUrl" style="max-height:150px;" />
+            </div>
+        }
+
+        <div class="mb-3">
+            <label asp-for="FormFile" class="form-label">Yeni şəkil yüklə</label>
+            <input asp-for="FormFile" class="form-control" type="file" />
+            <span asp-validation-for="FormFile" class="text-danger"></span>
+        </div>
+
+        <div class="text-end">
+            <button type="submit" class="btn btn-add-shop">Yadda saxla</button>
+        </div>
+        <style>
+            .btn-add-shop {
+                background-color: #f8c1d8;
+                color: #8b2d56;
+                font-weight: 600;
+                font-size: 15px;
+                padding: 10px 22px;
+                border-radius: 12px;
+                border: none;
+                transition: background-color 0.3s ease, transform 0.2s ease;
+                box-shadow: 0 4px 12px rgba(248, 193, 216, 0.4);
+            }
+
+                .btn-add-shop:hover {
+                    background-color: #f4a8c4;
+                    color: #6e2042;
+                    transform: translateY(-2px);
+                    text-decoration: none;
+                }
+        </style>
+    </form>
+</div>

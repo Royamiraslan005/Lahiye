@@ -1,0 +1,24 @@
+﻿@using NailSalon.Core.ViewModels
+@model ConfirmReservationVm
+
+@{
+    ViewData["Title"] = "Rezervasiya Təsdiqi";
+}
+
+<h2 class="text-center mb-4">Rezervasiyanız tamamlandı ✅</h2>
+
+<form asp-action="ConfirmReservation" method="post" class="w-75 mx-auto p-4 border rounded shadow-sm bg-light">
+    <div class="mb-3">
+        <label asp-for="Email" class="form-label fw-semibold">Email ünvanınız</label>
+        <input asp-for="Email" class="form-control" placeholder="example@mail.com" />
+        <span asp-validation-for="Email" class="text-danger small"></span>
+    </div>
+    <button asp-action="ConfirmReservation" type="submit" class="btn w-100 fw-bold" style="background-color: pink; color: white;">
+        Təsdiqlə və Email Göndər
+    </button>
+</form>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}
+

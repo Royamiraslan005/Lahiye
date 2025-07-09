@@ -1,0 +1,196 @@
+﻿@model List<NailSalon.Core.ViewModels.BasketItemVm>
+
+@{
+    ViewData["Title"] = "Səbətim";
+}
+
+<!DOCTYPE html>
+<html lang="az">
+<head>
+    <meta charset="utf-8" />
+    <title>@ViewData["Title"]</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
+
+    <style>
+        body {
+            background-color: #fff0f7;
+            font-family: 'Segoe UI', sans-serif;
+        }
+
+        .basket-container {
+            max-width: 1000px;
+            margin: 50px auto;
+            background-color: #ffffff;
+            border-radius: 20px;
+            padding: 30px 40px;
+            box-shadow: 0 10px 30px rgba(255, 105, 180, 0.2);
+        }
+
+        h2 {
+            color: #d63384;
+            font-weight: 700;
+            margin-bottom: 30px;
+        }
+
+        .table th {
+            background-color: #ffe4ec;
+            color: #d63384;
+        }
+
+        .table td {
+            vertical-align: middle;
+        }
+
+        .product-img {
+            height: 60px;
+            width: 60px;
+            object-fit: cover;
+            border-radius: 8px;
+            border: 1px solid #ffd6e8;
+        }
+
+        .btn-danger,
+        .btn-warning,
+        .btn-success,
+        .btn-secondary {
+            border-radius: 10px;
+            font-weight: 600;
+            padding: 10px 22px;
+            transition: background-color 0.3s ease;
+        }
+
+        .btn-danger:hover {
+            background-color: #b02a37;
+            border-color: #b02a37;
+        }
+
+        .btn-warning:hover {
+            background-color: #cc7a00;
+            border-color: #cc7a00;
+        }
+
+        .btn-success:hover {
+            background-color: #196c2e;
+            border-color: #196c2e;
+        }
+
+        .empty-text {
+            color: #999;
+            font-style: italic;
+            font-size: 1.1rem;
+            margin-top: 40px;
+        }
+
+        .action-buttons {
+            margin-top: 30px;
+        }
+
+        /* Responsive adjustments */
+        @@media (max-width: 768px) {
+            .basket-container {
+                margin: 20px 15px;
+                padding: 20px 20px;
+            }
+
+            .table-responsive {
+                overflow-x: auto;
+            }
+
+            /* Düymələr alt-alta sıralansın */
+            .action-buttons {
+                flex-direction: column !important;
+                gap: 15px;
+            }
+
+            .action-buttons .btn {
+                width: 100% !important;
+                padding: 12px 0;
+                font-size: 1.1rem;
+            }
+        }
+
+        @@media (max-width: 480px) {
+            .product-img {
+                height: 50px;
+                width: 50px;
+            }
+
+            .table th,
+            .table td {
+                padding: 10px 6px;
+                font-size: 0.9rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container basket-container">
+        <h2 class="text-center">🛒 Səbətim</h2>
+
+        @if (Model == null || !Model.Any())
+        {
+                <p class="empty-text text-center">Səbətiniz boşdur.</p>
+                <div class="text-center mt-4">
+                    <a asp-controller="Shop" asp-action="Index" class="btn btn-primary px-4 py-2">🛍️ Alış-verişə davam et</a>
+                </div>
+        }
+        else
+        {
+                <div class="table-responsive">
+                    <table class="table align-middle">
+                        <thead>
+                            <tr>
+                                <th>Şəkil</th>
+                                <th>Məhsul</th>
+                                <th>Qiymət</th>
+                                <th>Say</th>
+                                <th>Cəm</th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                        @foreach (var item in Model)
+                        {
+                                    <tr>
+                                        <td>
+                                            <img src="~/images/@item.ImageUrl" alt="@item.Name" class="product-img" />
+                                        </td>
+                                        <td>@item.Name</td>
+                                        <td>@($"{item.Price:F2} azn")</td>
+                                        <td>@item.Count</td>
+                                        <td>@($"{(item.Price * item.Count):F2} azn")</td>
+                                        <td>
+                                            <form asp-controller="Basket" asp-action="RemoveFromBasket" asp-route-id="@item.ProductId" method="post" style="display:inline;">
+                                                <button type="submit" class="btn btn-sm btn-danger">Sil</button>
+                                            </form>
+                                        </td>
+                                    </tr>
+                        }
+                        </tbody>
+                        <tfoot>
+                            <tr>
+                                <th colspan="4" class="text-end">Cəmi:</th>
+                                <th colspan="2" style="color:#d63384; font-weight: 700;">
+                                @($"{Model.Sum(x => x.Price * x.Count):F2} azn")
+                                </th>
+                            </tr>
+                        </tfoot>
+                    </table>
+                </div>
+
+                <div class="action-buttons d-flex flex-wrap justify-content-between gap-3 mt-4">
+                    <form asp-action="ClearBasket" method="post" class="flex-grow-1 flex-shrink-1">
+                        <button type="submit" class="btn btn-danger w-100">🗑️ Səbəti təmizlə</button>
+                    </form>
+
+                    <a asp-controller="Shop" asp-action="Index" class="btn btn-warning flex-grow-1 flex-shrink-1 w-100 text-center">🛍️ Alış-verişə davam et</a>
+
+                    <form asp-controller="Basket" asp-action="Checkout" method="post" class="flex-grow-1 flex-shrink-1">
+                        <button type="submit" class="btn btn-success w-100">💳 Ödəniş et</button>
+                    </form>
+                </div>
+        }
+    </div>
+</body>
+</html>

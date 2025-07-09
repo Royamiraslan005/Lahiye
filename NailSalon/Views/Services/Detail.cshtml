@@ -1,0 +1,266 @@
+﻿@using NailSalon.Core.ViewModels
+@model ServicesVm
+
+<div class="container py-5 service-detail-container">
+    <div class="row align-items-center">
+        <!-- Şəkil -->
+        <div class="col-md-6 text-center mb-4 mb-md-0">
+            <img src="@Url.Content("~/images/" + Model.ImageUrl)" alt="@Model.Title" class="img-fluid rounded cute-img" />
+        </div>
+
+        <!-- Məzmun -->
+        <div class="col-md-6">
+            <h3  class="cute-title"> @Model.Title</h3>
+            <p class="cute-desc">@Model.Description</p>
+
+            <!-- Niyə bizi seçməlisiniz -->
+            <div class="why-choose mt-4">
+                <h5> Niyə bizi seçməlisiniz?</h5>
+                <ul class="list-unstyled">
+                    <li><i class="fas fa-check-circle text-success me-2"></i>Sevgi ilə görülən işlər</li>
+                    <li><i class="fas fa-check-circle text-success me-2"></i>Zərif və rəngarəng dizaynlar</li>
+                    <li><i class="fas fa-check-circle text-success me-2"></i>Təmiz və rahat mühit</li>
+                    <li><i class="fas fa-check-circle text-success me-2"></i>Peşəkar ustalardan fərqli effektlər</li>
+                </ul>
+            </div>
+
+
+            <!-- Rating (ulduzlar) -->
+            <div class="rating mt-3">
+                <i class="fas fa-star text-warning"></i>
+                <i class="fas fa-star text-warning"></i>
+                <i class="fas fa-star text-warning"></i>
+                <i class="fas fa-star text-warning"></i>
+                <i class="fas fa-star text-warning"></i>
+            </div>
+
+
+            <!-- Sosial Şəbəkələr -->
+            <div class="social-section mt-4">
+                <div class="d-flex gap-3">
+                    <a href="https://facebook.com/seninSeyfen" target="_blank" class="social-icon facebook">
+                        <i class="fab fa-facebook-f"></i>
+                    </a>
+                    <a href="https://instagram.com/_zodiacc.nails/" target="_blank" class="social-icon instagram">
+                        <i class="fab fa-instagram"></i>
+                    </a>
+                    <a href="https://twitter.com/seninSeyfen" target="_blank" class="social-icon twitter">
+                        <i class="fab fa-twitter"></i>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Geri düyməsi -->
+            <div class="mt-4">
+                <a href="@Url.Action("Index", "Services")" class="btn btn-back"> Xidmətlərə geri dön</a>
+            </div>
+
+         
+        </div>
+    </div>
+
+    
+</div>
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+
+<style>
+    body {
+        background-color: #fff0f5;
+        font-family: 'Quicksand', 'Segoe UI', sans-serif;
+    }
+
+    .service-detail-container {
+        background: linear-gradient(to bottom right, #fff, #fff0f5);
+        border: 2px dashed #f7c8e0;
+        border-radius: 20px;
+        box-shadow: 0 0 25px rgba(0, 0, 0, 0.08);
+        padding: 40px;
+    }
+
+    .rating i {
+        font-size: 1.5rem;
+        margin-right: 3px;
+    }
+
+
+    .cute-title {
+        color:#680427;
+        font-size: 3rem;
+        font-weight: 700;
+        margin-bottom: 15px;
+    }
+
+    .cute-desc {
+        font-size: 1.25rem;
+        color: #5c5c5c;
+        line-height: 1.8;
+    }
+
+    .cute-img {
+        max-height: 420px;
+        object-fit: cover;
+        border-radius: 15px;
+        box-shadow: 0 8px 24px rgba(214, 51, 132, 0.2);
+        transition: transform 0.4s ease-in-out;
+    }
+
+        .cute-img:hover {
+            transform: scale(1.05);
+        }
+
+    .why-choose h5 {
+        font-weight: 600;
+        color: #b03060;
+        margin-bottom: 10px;
+    }
+
+    .why-choose ul {
+        list-style: none;
+        padding-left: 0;
+    }
+
+    .why-choose li {
+        font-size: 1.1rem;
+        margin-bottom: 6px;
+        color: #444;
+    }
+
+    .why-choose i {
+        color: #28a745;
+        margin-right: 8px;
+    }
+
+    .rating {
+        font-size: 1.5rem;
+        color: #f5b400;
+    }
+
+    .social-section .btn {
+        border-radius: 20px;
+        padding: 6px 14px;
+        font-size: 1rem;
+        margin-right: 10px;
+        font-weight: 500;
+        transition: transform 0.3s;
+    }
+
+    .social-btn:hover {
+        transform: translateY(-3px);
+    }
+
+    .social-btn.fb {
+        background-color: #e8f0ff;
+        color: #1877f2;
+        border: 1px solid #1877f2;
+    }
+
+    .social-btn.ig {
+        background-color: #ffe8f3;
+        color: #e1306c;
+        border: 1px solid #e1306c;
+    }
+
+    .social-btn.tw {
+        background-color: #e8faff;
+        color: #1da1f2;
+        border: 1px solid #1da1f2;
+    }
+
+    .social-btn.fb:hover {
+        background-color: #1877f2;
+        color: white;
+    }
+
+    .social-btn.ig:hover {
+        background-color: #e1306c;
+        color: white;
+    }
+
+    .social-btn.tw:hover {
+        background-color: #1da1f2;
+        color: white;
+    }
+
+    .btn-back {
+        background-color: #f8d7e6;
+        color: #d63384;
+        padding: 10px 25px;
+        border-radius: 30px;
+        font-weight: 600;
+        transition: 0.3s;
+        border: none;
+    }
+
+        .btn-back:hover {
+            background-color: #d63384;
+            color: white;
+        }
+
+    .btn-contact {
+        background-color: #d63384;
+        color: white;
+        padding: 10px 30px;
+        border-radius: 30px;
+        font-size: 1.1rem;
+        font-weight: 600;
+        transition: 0.3s;
+    }
+
+        .btn-contact:hover {
+            background-color: #a72566;
+        }
+
+    .review-section {
+        margin-top: 60px;
+    }
+
+    .review-card {
+        background-color: #ffeaf3;
+        border-radius: 15px;
+        padding: 20px;
+        box-shadow: 0 5px 15px rgba(214, 51, 132, 0.1);
+        font-size: 1rem;
+        color: #444;
+        margin-bottom: 20px;
+    }
+
+        .review-card strong {
+            display: block;
+            margin-top: 10px;
+            color: #d63384;
+        }
+
+    /* Social round icons */
+    .social-icon {
+        width: 40px;
+        height: 40px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 50%;
+        font-size: 18px;
+        color: white;
+        transition: transform 0.3s ease, background-color 0.3s ease;
+        text-decoration: none;
+    }
+
+        .social-icon.facebook {
+            background-color: #3b5998;
+        }
+
+        .social-icon.instagram {
+            background-color: #e83e8c;
+        }
+
+        .social-icon.twitter {
+            background-color: #1da1f2;
+        }
+
+        .social-icon:hover {
+            transform: scale(1.1);
+            opacity: 0.9;
+        }
+</style>

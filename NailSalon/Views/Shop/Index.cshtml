@@ -1,0 +1,99 @@
+﻿@model List<NailSalon.Core.ViewModels.ShopProductVm>
+
+@{
+    ViewData["Title"] = "Shop Products";
+}
+
+<style>
+    .product-card {
+        opacity: 0;
+        transform: translateY(20px);
+        transition: opacity 0.6s ease, transform 0.6s ease;
+    }
+
+        .product-card.show {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Hover effekti — kart yuxarı qalxsın */
+        .product-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 12px 24px rgba(0, 0, 0, 0.15);
+        }
+</style>
+
+<!-- ❤️ Bəyəndiklərim səhifəsinə keçid -->
+<div class="text-end me-3 mt-3">
+    <a asp-controller="Like" asp-action="Liked" class="btn btn-outline-danger">
+        ❤️ Bəyəndiklərim
+    </a>
+</div>
+
+<div class="container mt-4">
+    <h2 class="mb-4 text-center" style="color:#680427;">Məhsullar</h2>
+
+    <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 g-4">
+        @foreach (var item in Model)
+        {
+            <div class="col">
+                <div class="card h-100 shadow-sm product-card">
+                    <form asp-controller="Like" asp-action="Toggle" method="post" class="position-absolute top-0 end-0 m-2">
+                        <input type="hidden" name="productId" value="@item.Id" />
+                        <button type="submit" class="btn btn-sm @(item.IsLikedByUser ? "btn-danger" : "btn-outline-danger")">
+                            ❤️ @item.LikeCount
+                        </button>
+                    </form>
+
+                    <a asp-controller="Shop" asp-action="Detail" asp-route-id="@item.Id">
+                        <img src="~/images/@item.ImageUrl" class="card-img-top" alt="@item.Name" style="height: 200px; object-fit: cover;" />
+                    </a>
+
+                    <div class="card-body text-center">
+                        <h5 class="card-title" style="color:#680427;">@item.Name</h5>
+                        <p class="card-text">@item.Description</p>
+                        <p class="fw-bold" style="color:#680427;">Qiymət: @($"{item.Price:F2} azn")</p>
+                        <span class="badge bg-light border border-primary" style="color:#680427;">@item.Category</span>
+                    </div>
+
+                    <div class="card-footer text-center d-flex justify-content-center gap-2 flex-wrap">
+                        <form asp-controller="Basket" asp-action="AddToBasket" method="post" class="m-0">
+                            <input type="hidden" name="productId" value="@item.Id" />
+                            <button type="submit" class="btn btn-outline-success btn-sm">
+                                🛒 
+                            </button>
+                        </form>
+
+                        <form asp-controller="Sale" asp-action="Create" method="post" class="d-inline m-0">
+                            <input type="hidden" name="productId" value="@item.Id" />
+                            <input type="number" name="quantity" value="1" min="1" class="form-control form-control-sm" style="width: 60px; display: inline-block;" />
+                            <button type="submit" class="btn btn-outline-primary btn-sm">
+                                💳 
+                            </button>
+                        </form>
+
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+</div>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        const cards = document.querySelectorAll(".product-card");
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add("show");
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, {
+            threshold: 0.1
+        });
+
+        cards.forEach(card => observer.observe(card));
+    });
+</script>

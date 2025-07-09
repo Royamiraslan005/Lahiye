@@ -1,0 +1,28 @@
+﻿@model NailSalon.Core.ViewModels.MenuItemVm
+
+@{
+    ViewData["Title"] = "Menyu Redaktə Et";
+}
+
+<div class="container py-5">
+    <h2 class="text-center mb-4" style="color: #d63384;">Menyu Redaktə Et</h2>
+
+    <form asp-action="Update" enctype="multipart/form-data" method="post">
+        <input type="hidden" asp-for="Id" />
+
+        <div class="mb-3">
+            <label asp-for="Name" class="form-label">Məhsul Adı</label>
+            <input asp-for="Name" class="form-control" />
+            <span asp-validation-for="Name" class="text-danger"></span>
+        </div>
+
+        <div class="mb-3">
+            <label asp-for="FormFile" class="form-label">Select Image</label>
+            <input asp-for="FormFile" type="file" class="form-control" />
+            <span asp-validation-for="FormFile" class="text-danger"></span>
+        </div>
+
+        <button type="submit" class="btn btn-primary">Yadda Saxla</button>
+        <a asp-action="Index" class="btn btn-secondary">Geri</a>
+    </form>
+</div>

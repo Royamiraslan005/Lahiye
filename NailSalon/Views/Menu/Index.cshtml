@@ -1,0 +1,110 @@
+﻿@model NailSalon.Core.ViewModels.ReservationVm
+
+<!DOCTYPE html>
+<html lang="az">
+<head>
+    <meta charset="UTF-8">
+    <title>Menyu Seçimi – Zodiac Nails</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            background-color: #fff0f6;
+            font-family: 'Segoe UI', sans-serif;
+        }
+
+        .menu-title {
+            color: #d63384;
+            font-family: 'Marck Script', cursive;
+            font-size: 38px;
+            margin-top: 30px;
+            text-align: center;
+        }
+
+        .menu-container {
+            max-width: 1200px;
+            margin: 40px auto;
+            padding: 0 15px;
+        }
+
+        .menu-card {
+            background: #fff;
+            border: none;
+            border-radius: 16px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.06);
+            transition: transform 0.3s ease;
+        }
+
+            .menu-card:hover {
+                transform: translateY(-5px);
+            }
+
+            .menu-card img {
+                height: 180px;
+                object-fit: cover;
+                border-top-left-radius: 16px;
+                border-top-right-radius: 16px;
+            }
+
+            .menu-card .card-body {
+                text-align: center;
+            }
+
+            .menu-card h5 {
+                color: #d63384;
+                font-weight: 600;
+                margin-bottom: 10px;
+            }
+
+            .menu-card input[type="checkbox"] {
+                accent-color: #d63384;
+                transform: scale(1.2);
+                margin-top: 10px;
+            }
+    </style>
+</head>
+<body>
+
+    <h2 class="menu-title">🧁 Menyu Seçimi</h2>
+
+    <div class="menu-container">
+
+        @if (TempData["Message"] != null)
+        {
+            <div class="alert alert-warning text-center">
+                @TempData["Message"]
+            </div>
+        }
+
+        <form method="post" asp-action="Index" asp-controller="Menu">
+
+            <div class="row g-4">
+                @foreach (var item in Model.MenuItems)
+                {
+                    <div class="col-md-4">
+                        <div class="card menu-card">
+                            <img src="~/images/@item.ImageUrl" class="card-img-top" alt="@item.Name" />
+                            <div class="card-body">
+                                <h5>@item.Name</h5>
+                                <input type="checkbox" name="SelectedMenuIds[]" value="@item.Id" /> Seç
+                            </div>
+                        </div>
+                    </div>
+                }
+            </div>
+
+            <!-- Geri qalan rezervasiya dataları -->
+            <input type="hidden" name="MasterId" value="@Model.MasterId" />
+            <input type="hidden" name="DesignId" value="@Model.DesignId" />
+            <input type="hidden" name="Date" value="@Model.Date.ToString("yyyy-MM-ddTHH:mm")" />
+            <input type="hidden" name="WantsFoodDrink" value="true" />
+            <input type="hidden" name="UserId" value="@Model.UserId" />
+
+            <div class="text-center mt-5">
+                <button type="submit" class="btn btn-primary px-5 py-2">Təsdiqlə</button>
+            </div>
+        </form>
+    </div>
+
+</body>
+</html>

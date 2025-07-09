@@ -1,0 +1,53 @@
+﻿@model IEnumerable<NailSalon.Core.ViewModels.ReviewVm>
+
+@{
+    ViewData["Title"] = "Rəylər";
+}
+
+<div class="container py-5">
+    <h2 class="text-center mb-4 text-pink">💗 Müştəri Rəyləri</h2>
+
+    <div class="row g-4">
+        @foreach (var review in Model)
+        {
+            <div class="col-md-4">
+                <div class="card p-3 shadow-sm bg-white-pink rounded-4">
+                    <div class="card-body">
+                        <h5 class="card-title text-pink">@review.Email</h5>
+                        <p class="card-text">@review.Comment</p>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+
+    <div class="text-center mt-5">
+        <a href="@Url.Action("Index", "Home")#rey" class="btn btn-pink px-4 py-2 rounded-pill">Rəy Yaz 💬</a>
+    </div>
+</div>
+
+<style>
+    body {
+        background-color: #fff0f6;
+    }
+
+    .text-pink {
+        color: #d63384;
+        font-family: 'Marck Script', cursive;
+    }
+
+    .bg-white-pink {
+        background-color: #fff8fc;
+    }
+
+    .btn-pink {
+        background-color: #d63384;
+        color: white;
+        border: none;
+    }
+
+        .btn-pink:hover {
+            background-color: #b03060;
+        }
+</style>
+

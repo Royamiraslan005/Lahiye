@@ -1,0 +1,90 @@
+﻿@model List<NailSalon.Core.ViewModels.ShopProductVm>
+
+@{
+    ViewData["Title"] = "Shop Products";
+}
+
+<div class="container mt-4 ">
+    <h2 class="mb-4 text-center soft-pink">Shop Products</h2>
+
+    <div class="text-end mb-3">
+        <a class="btn btn-add-shop" asp-action="Create">Add New Product</a>
+    </div>
+
+    <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 g-4">
+        @foreach (var item in Model)
+        {
+            <div class="col">
+                <div class="card h-100 shadow-sm">
+                    <img src="~/images/@item.ImageUrl" class="card-img-top" alt="@item.Name" style="height: 200px; object-fit: cover;" />
+                    <div class="card-body">
+                        <h5 class="card-title">@item.Name</h5>
+                        <p class="card-text text-muted">@item.Description</p>
+                        <p class="fw-bold">Price: ₼@item.Price</p>
+                        <span class="badge bg-primary">@item.Category</span>
+                    </div>
+                    <div class="card-footer text-center">
+                        <a class="btn btn-update" asp-action="Update" asp-route-id="@item.Id">Update</a>
+                        <a asp-action="Delete" asp-route-id="@item.Id" class="btn btn-delete"
+                           onclick="return confirm('Silmək istədiyinizə əminsiniz?')">Delete</a>
+                    </div>
+                </div>
+            </div>
+        }
+        <style>
+            .soft-pink {
+                color: #f8c8dc;
+            }
+            .btn-add-shop {
+                background-color: #f8c1d8;
+                color: #8b2d56;
+                font-weight: 600;
+                font-size: 15px;
+                padding: 10px 22px;
+                border-radius: 12px;
+                border: none;
+                transition: background-color 0.3s ease, transform 0.2s ease;
+                box-shadow: 0 4px 12px rgba(248, 193, 216, 0.4);
+            }
+
+                .btn-add-shop:hover {
+                    background-color: #f4a8c4;
+                    color: #6e2042;
+                    transform: translateY(-2px);
+                    text-decoration: none;
+                }
+
+            .btn-update {
+                background-color: #ffe58f;
+                color: #5c4400;
+                border: none;
+                padding: 6px 14px;
+                border-radius: 10px;
+                font-size: 13px;
+                font-weight: 600;
+                transition: background-color 0.3s ease;
+            }
+
+                .btn-update:hover {
+                    background-color: #ffd666;
+                    color: #5c4400;
+                }
+
+            .btn-delete {
+                background-color: #ffccc7;
+                color: #820014;
+                border: none;
+                padding: 6px 14px;
+                border-radius: 10px;
+                font-size: 13px;
+                font-weight: 600;
+                transition: background-color 0.3s ease;
+            }
+
+                .btn-delete:hover {
+                    background-color: #ffa39e;
+                    color: #820014;
+                }
+        </style>
+    </div>
+</div>

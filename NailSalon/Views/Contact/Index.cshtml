@@ -1,0 +1,43 @@
+﻿@using NailSalon.Core.ViewModels.NailSalon.Core.ViewModels
+@model ContactVm
+
+@{
+    ViewData["Title"] = "Bizimlə Əlaqə";
+}
+
+<div class="container py-5">
+    <h2 class="text-center text-pink mb-4">📨 Bizimlə Əlaqə</h2>
+
+    @if (TempData["Success"] != null)
+    {
+        <div class="alert alert-success text-center">
+            @TempData["Success"]
+        </div>
+    }
+
+    <form asp-action="Index" method="post" class="bg-white-pink p-4 rounded-4 shadow-sm">
+        <div class="mb-3">
+            <label asp-for="FullName" class="form-label">Ad Soyad</label>
+            <input asp-for="FullName" class="form-control" placeholder="Adınızı daxil edin" />
+            <span asp-validation-for="FullName" class="text-danger"></span>
+        </div>
+
+        <div class="mb-3">
+            <label asp-for="Email" class="form-label">Email</label>
+            <input asp-for="Email" class="form-control" placeholder="example@gmail.com" />
+            <span asp-validation-for="Email" class="text-danger"></span>
+        </div>
+
+        <div class="mb-3">
+            <label asp-for="Message" class="form-label">Mesaj</label>
+            <textarea asp-for="Message" class="form-control" rows="5" placeholder="Mesajınızı yazın..."></textarea>
+            <span asp-validation-for="Message" class="text-danger"></span>
+        </div>
+
+        <button type="submit" class="btn btn-pink px-4 py-2 rounded-pill">Göndər 💌</button>
+    </form>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

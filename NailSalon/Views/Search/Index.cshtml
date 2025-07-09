@@ -1,0 +1,65 @@
+﻿@using NailSalon.Core.ViewModels
+@model GlobalSearchVm
+
+<h2 class="mb-4 text-center">Axtarış nəticələri: <span class="text-primary">"@Model.SearchText"</span></h2>
+
+@if (!Model.Masters.Any() && !Model.NailTypes.Any() && !Model.Services.Any())
+{
+    <p class="text-center text-danger fs-5">Nəticə tapılmadı ❌</p>
+}
+
+@if (Model.Masters.Any())
+{
+    <h4 class="mb-3 border-bottom pb-2">Ustalar</h4>
+    <div class="row g-4">
+        @foreach (var master in Model.Masters)
+        {
+            <div class="col-md-4">
+                <div class="card shadow-sm rounded-3 h-100" style="height: 300px;">
+
+                    <img src="~/IMAGE/@master.ImageUrl" class="card-img-top rounded-top" style="height: 250px; object-fit: cover;" alt="@master.FullName" />
+                    <div class="card-body">
+                        <h5 class="card-title fw-semibold">@master.FullName</h5>
+                        <p class="card-text text-muted mb-1"><strong>Təcrübə:</strong> @master.Experience</p>
+                        <p class="card-text text-muted mb-1"><strong>İxtisas:</strong> @master.Specialty</p>
+                        <p class="card-text text-muted"><strong>Burc:</strong> @master.Zodiac</p>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+}
+
+@if (Model.NailTypes.Any())
+{
+    <h4 class="mt-5 mb-3 border-bottom pb-2">Dizaynlar</h4>
+    <div class="row g-4">
+        @foreach (var design in Model.NailTypes)
+        {
+            <div class="col-md-4 mb-3">
+                <div class="card h-100">
+                    <img src="~/images/@design.ImageUrl" alt="@design.Title" class="card-img-top" style="height: 330px; width: 100%; object-fit: cover;" />
+                    <div class="card-body">
+                        <h5 class="card-title text-center">@design.Title</h5>
+                    </div>
+                </div>
+            </div>
+
+        }
+    </div>
+}
+
+@if (Model.Services.Any())
+{
+    <h4 class="mt-5 mb-3 border-bottom pb-2">Xidmətlər</h4>
+    <div class="row g-4">
+        @foreach (var service in Model.Services)
+        {
+            <div class="col-md-4">
+                <div class="card shadow-sm rounded-3 p-4 text-center h-100">
+                    <h5 class="mb-0 fw-semibold">@service.Title</h5>
+                </div>
+            </div>
+        }
+    </div>
+}

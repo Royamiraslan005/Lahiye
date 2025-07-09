@@ -1,0 +1,69 @@
+﻿@model NailSalon.Core.ViewModels.NailTypeVm
+
+@{
+    ViewData["Title"] = "Dırnaq Növünü Redaktə Et";
+}
+
+<div class="container py-5">
+    <h2 class="text-center mb-4" style="color: #d63384;">✏️ Dırnaq Növünü Redaktə Et</h2>
+
+    <form asp-action="Update" method="post" enctype="multipart/form-data" class="col-md-6 offset-md-3 bg-light p-4 rounded shadow">
+        <input type="hidden" asp-for="Id" />
+
+        <div class="mb-3">
+            <label asp-for="Title" class="form-label">Title</label>
+            <input asp-for="Title" class="form-control" />
+            <span asp-validation-for="Title" class="text-danger"></span>
+        </div>
+
+        <div class="mb-3">
+            <label asp-for="Price" class="form-label">Price (AZN)</label>
+            <input asp-for="Price" class="form-control" type="number" step="0.01" />
+            <span asp-validation-for="Price" class="text-danger"></span>
+        </div>
+
+        <div class="mb-3">
+            <label asp-for="Zodiac" class="form-label">Zodiac</label>
+            <input asp-for="Zodiac" class="form-control" />
+            <span asp-validation-for="Zodiac" class="text-danger"></span>
+        </div>
+
+        <div class="mb-3">
+            <label asp-for="FormFile" class="form-label">New Image</label>
+            <input asp-for="FormFile" class="form-control" type="file" />
+            <span asp-validation-for="FormFile" class="text-danger"></span>
+        </div>
+
+        @if (!string.IsNullOrEmpty(Model.ImageUrl))
+        {
+            <div class="mb-3">
+                <p>Hazırkı şəkil:</p>
+                <img src="/images/@Model.ImageUrl" alt="Şəkil" class="img-thumbnail" style="max-height: 200px;" />
+            </div>
+        }
+
+        <button type="submit" class="btn btn-add-nail w-100">Save</button>
+        <div asp-validation-summary="All"></div>
+        <style>
+            .btn-add-nail {
+                background-color: #f8c1d8;
+                color: #8b2d56;
+                font-weight: 600;
+                font-size: 15px;
+                padding: 10px 22px;
+                border-radius: 12px;
+                border: none;
+                transition: background-color 0.3s ease, transform 0.2s ease;
+                box-shadow: 0 4px 12px rgba(248, 193, 216, 0.4);
+            }
+
+                .btn-add-nail:hover {
+                    background-color: #f4a8c4;
+                    color: #6e2042;
+                    transform: translateY(-2px);
+                    text-decoration: none;
+                }
+        </style>
+    </form>
+</div>
+
