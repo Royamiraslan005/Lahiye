@@ -3243,11 +3243,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\hp\\Downloads\\Nail-Salon\\Nail-Salon\\NailSalon.BL\\NailSalon.BL.csproj",
+      "projectUniqueName": "C:\\Users\\hp\\Desktop\\lahiye\\NailSalon.BL\\NailSalon.BL.csproj",
       "projectName": "NailSalon.BL",
-      "projectPath": "C:\\Users\\hp\\Downloads\\Nail-Salon\\Nail-Salon\\NailSalon.BL\\NailSalon.BL.csproj",
+      "projectPath": "C:\\Users\\hp\\Desktop\\lahiye\\NailSalon.BL\\NailSalon.BL.csproj",
       "packagesPath": "C:\\Users\\hp\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\hp\\Downloads\\Nail-Salon\\Nail-Salon\\NailSalon.BL\\obj\\",
+      "outputPath": "C:\\Users\\hp\\Desktop\\lahiye\\NailSalon.BL\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -3268,8 +3268,8 @@
         "net8.0": {
           "targetAlias": "net8.0",
           "projectReferences": {
-            "C:\\Users\\hp\\Downloads\\Nail-Salon\\Nail-Salon\\NailSalon.DAL\\NailSalon.DAL.csproj": {
-              "projectPath": "C:\\Users\\hp\\Downloads\\Nail-Salon\\Nail-Salon\\NailSalon.DAL\\NailSalon.DAL.csproj"
+            "C:\\Users\\hp\\Desktop\\lahiye\\NailSalon.DAL\\NailSalon.DAL.csproj": {
+              "projectPath": "C:\\Users\\hp\\Desktop\\lahiye\\NailSalon.DAL\\NailSalon.DAL.csproj"
             }
           }
         }

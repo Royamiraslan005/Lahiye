@@ -4517,11 +4517,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\hp\\Downloads\\Nail-Salon\\Nail-Salon\\NailSalon\\NailSalon.csproj",
+      "projectUniqueName": "C:\\Users\\hp\\Desktop\\lahiye\\NailSalon\\NailSalon.csproj",
       "projectName": "NailSalon",
-      "projectPath": "C:\\Users\\hp\\Downloads\\Nail-Salon\\Nail-Salon\\NailSalon\\NailSalon.csproj",
+      "projectPath": "C:\\Users\\hp\\Desktop\\lahiye\\NailSalon\\NailSalon.csproj",
       "packagesPath": "C:\\Users\\hp\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\hp\\Downloads\\Nail-Salon\\Nail-Salon\\NailSalon\\obj\\",
+      "outputPath": "C:\\Users\\hp\\Desktop\\lahiye\\NailSalon\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -4542,14 +4542,14 @@
         "net8.0": {
           "targetAlias": "net8.0",
           "projectReferences": {
-            "C:\\Users\\hp\\Downloads\\Nail-Salon\\Nail-Salon\\NailSalon.BL\\NailSalon.BL.csproj": {
-              "projectPath": "C:\\Users\\hp\\Downloads\\Nail-Salon\\Nail-Salon\\NailSalon.BL\\NailSalon.BL.csproj"
+            "C:\\Users\\hp\\Desktop\\lahiye\\NailSalon.BL\\NailSalon.BL.csproj": {
+              "projectPath": "C:\\Users\\hp\\Desktop\\lahiye\\NailSalon.BL\\NailSalon.BL.csproj"
             },
-            "C:\\Users\\hp\\Downloads\\Nail-Salon\\Nail-Salon\\NailSalon.Core\\NailSalon.Core.csproj": {
-              "projectPath": "C:\\Users\\hp\\Downloads\\Nail-Salon\\Nail-Salon\\NailSalon.Core\\NailSalon.Core.csproj"
+            "C:\\Users\\hp\\Desktop\\lahiye\\NailSalon.Core\\NailSalon.Core.csproj": {
+              "projectPath": "C:\\Users\\hp\\Desktop\\lahiye\\NailSalon.Core\\NailSalon.Core.csproj"
             },
-            "C:\\Users\\hp\\Downloads\\Nail-Salon\\Nail-Salon\\NailSalon.DAL\\NailSalon.DAL.csproj": {
-              "projectPath": "C:\\Users\\hp\\Downloads\\Nail-Salon\\Nail-Salon\\NailSalon.DAL\\NailSalon.DAL.csproj"
+            "C:\\Users\\hp\\Desktop\\lahiye\\NailSalon.DAL\\NailSalon.DAL.csproj": {
+              "projectPath": "C:\\Users\\hp\\Desktop\\lahiye\\NailSalon.DAL\\NailSalon.DAL.csproj"
             }
           }
         }

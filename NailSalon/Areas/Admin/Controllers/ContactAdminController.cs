@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using NailSalon.Core.Helpers;
 using NailSalon.DAL.Contexts;
 
 namespace NailSalon.Areas.Admin.Controllers
@@ -37,7 +38,18 @@ namespace NailSalon.Areas.Admin.Controllers
             message.IsReplied = true;
             _context.SaveChanges();
 
-            TempData["Success"] = "Cavab uğurla göndərildi!";
+            // ✅ Email göndər
+            string subject = "Zodiac Nail Salon - Mesajınıza Cavab";
+            string body = $@"
+        <p>Hörmətli {message.FullName},</p>
+        <p>Sizin bizə göndərdiyiniz mesaja aşağıdakı cavabı verdik:</p>
+        <blockquote style='border-left:4px solid #ccc; padding-left:10px; color:#444;'>{reply}</blockquote>
+        <p>Əlavə sualınız olsa, bizimlə əlaqə saxlamaqdan çəkinməyin. 💅</p>
+        <p>Sevgi ilə, <br> <strong>NailSalon</strong></p>";
+
+            var result = EmailService.SendEmail(message.Email, subject, body);
+
+            TempData["Success"] = "Cavab uğurla göndərildi və email ünvanına yollandı!";
             return RedirectToAction("Index");
         }
 
